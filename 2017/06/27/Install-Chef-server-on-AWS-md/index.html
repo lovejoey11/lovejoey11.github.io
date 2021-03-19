@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.littlestep.cc","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Step1: Lunch instance Choose Ubuntu 16.04 Add minimum 20GB Storage space  Step2: Add Swap area(To make sure your server will run smoothly)SSH into your instanceRun the following command to add additio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Install Chef-server on AWS (t2-micro) free tier">
+<meta property="og:url" content="https://blog.littlestep.cc/2017/06/27/Install-Chef-server-on-AWS-md/index.html">
+<meta property="og:site_name" content="Yangkai&#39;s Blog">
+<meta property="og:description" content="Step1: Lunch instance Choose Ubuntu 16.04 Add minimum 20GB Storage space  Step2: Add Swap area(To make sure your server will run smoothly)SSH into your instanceRun the following command to add additio">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-06-28T04:00:00.000Z">
+<meta property="article:modified_time" content="2021-03-11T00:52:15.850Z">
+<meta property="article:author" content="Yangkai Lyu">
+<meta property="article:tag" content="Tech - AWS - chef - Linux - DevOps">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://blog.littlestep.cc/2017/06/27/Install-Chef-server-on-AWS-md/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Install Chef-server on AWS (t2-micro) free tier | Yangkai's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96198066-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-96198066-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Yangkai's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Standing on the shoulder of giants</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.littlestep.cc/2017/06/27/Install-Chef-server-on-AWS-md/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yangkai Lyu">
+      <meta itemprop="description" content="Sharing, Learning, Living">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yangkai's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Install Chef-server on AWS (t2-micro) free tier
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-06-28 00:00:00" itemprop="dateCreated datePublished" datetime="2017-06-28T00:00:00-04:00">2017-06-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-03-10 19:52:15" itemprop="dateModified" datetime="2021-03-10T19:52:15-05:00">2021-03-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Learning-Linux/" itemprop="url" rel="index"><span itemprop="name">Learning - Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Step1-Lunch-instance"><a href="#Step1-Lunch-instance" class="headerlink" title="Step1: Lunch instance"></a>Step1: Lunch instance</h2><ul>
+<li>Choose Ubuntu 16.04</li>
+<li>Add minimum 20GB Storage space</li>
+</ul>
+<h2 id="Step2-Add-Swap-area-To-make-sure-your-server-will-run-smoothly"><a href="#Step2-Add-Swap-area-To-make-sure-your-server-will-run-smoothly" class="headerlink" title="Step2: Add Swap area(To make sure your server will run smoothly)"></a>Step2: Add Swap area(To make sure your server will run smoothly)</h2><p>SSH into your instance<br>Run the following command to add additional RAM capability</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sudo fallocate -l 2G &#x2F;swapfile</span><br><span class="line">sudo chmod 600 &#x2F;swapfile</span><br><span class="line">sudo mkswap &#x2F;swapfile</span><br><span class="line">sudo swapon &#x2F;swapfile</span><br><span class="line"># Check if your are successfully allocate swap area</span><br><span class="line">sudo swapon --show</span><br><span class="line"># Add swap config permanently into system</span><br><span class="line">sudo sh -c &#39;(echo &quot;&#x2F;swapfile none swap defaults 0 0&quot; &gt;&gt; &#x2F;etc&#x2F;fstab)&#39;</span><br><span class="line">sudo sh -c &#39;(echo &#39;vm.swappiness&#x3D;10&#39; &gt;&gt; &#x2F;etc&#x2F;sysctl.conf)&#39;</span><br><span class="line"># after reboot your instance check the swap area still working</span><br><span class="line">sudo swapon --show</span><br></pre></td></tr></table></figure>
+<p>after you setup swap area you will see folllowing output</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NAME      TYPE SIZE USED PRIO</span><br><span class="line">&#x2F;swapfile file 2G   0B   -1</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+
+<h2 id="Step-3-Install-Chef-server"><a href="#Step-3-Install-Chef-server" class="headerlink" title="Step 3: Install Chef-server"></a>Step 3: Install Chef-server</h2><h3 id="Setp-1-Install-Chef-server-core"><a href="#Setp-1-Install-Chef-server-core" class="headerlink" title="Setp-1: Install Chef-server-core"></a>Setp-1: Install Chef-server-core</h3><p>use the following command to download deb package:</p>
+<ul>
+<li>for Ubuntu 16.04<br><code>curl -OL https://packages.chef.io/files/stable/chef-server/12.15.8/ubuntu/16.04/chef-server-core_12.15.8-1_amd64.deb</code><br><code>sudo dpkg -i chef-server-core_12.15.8-1_amd64.deb</code><br>After installation run following cmd to configure the server:<ul>
+<li>config system<blockquote>
+<p>sudo chef-server-ctl reconfigure</p>
+</blockquote>
+</li>
+<li>config user<br><code>sudo chef-server-ctl user-create yangkai yangkai lyu lyk119@gmail.com &#39;chef-yangkai&#39; --filename /home/ubuntu/.ssh/chef_root_user_key.pem</code></li>
+<li>config organization<br><code>sudo chef-server-ctl org-create greatchef &#39;Greatchef&#39; --association_user yangkai --filename /home/ubuntu/.ssh/chef-org-validator.pem</code><br>Above command will generate a user whose username is <strong>yangkai</strong>, password is <strong>chef-yangkai</strong>.<br>Also, it will create an organization which name is greatechef.<br>Remember both of the user authentication file and organization authentication file are in the user’s home folder <strong>~/.ssh/</strong>. Inside this folder you will have a file called <strong>chef_root_user_key.pem</strong> and <strong>chef-org-validator.pem</strong> you will need to copy and paste the content into your node and workstation’s <strong>.chef/</strong> folder</li>
+</ul>
+</li>
+</ul>
+<h3 id="Step-2-Install-the-WebUI-for-management"><a href="#Step-2-Install-the-WebUI-for-management" class="headerlink" title="Step-2: Install the WebUI for management"></a>Step-2: Install the WebUI for management</h3><p>execute the following command<br><code>sudo chef-server-ctl install chef-manage</code><br>then:<br><code>sudo chef-server-ctl reconfigure</code><br>and then:<br><code>sudo chef-manage-ctl reconfigure</code><br>Done this you should able to login the Web console with the credential you just created above, for this example, username: <strong>yangkai</strong>, password: <strong>chef-yangkai</strong>.<br>Now, you can go to your EC2 Public DNS to login to webUI.</p>
+<h2 id="Step-4-Config-your-Workstation"><a href="#Step-4-Config-your-Workstation" class="headerlink" title="Step 4: Config your Workstation"></a>Step 4: Config your Workstation</h2><h3 id="Step-1-Install-ChefDk"><a href="#Step-1-Install-ChefDk" class="headerlink" title="Step-1: Install ChefDk"></a>Step-1: Install ChefDk</h3><ul>
+<li>[for Ubuntu 16.04]<br><code>curl -OL https://packages.chef.io/files/stable/chefdk/1.5.0/ubuntu/16.04/chefdk_1.5.0-1_amd64.deb</code><br><code>sudo dpkg -i chefdk_1.5.0-1_amd64.deb</code></li>
+</ul>
+<h3 id="Step-2-Config-workstation-detail"><a href="#Step-2-Config-workstation-detail" class="headerlink" title="Step-2: Config workstation detail"></a>Step-2: Config workstation detail</h3><ul>
+<li>Create .chef folder and create <strong>user.pem</strong> and <strong>validator.pem</strong> into this folder</li>
+<li>The content of <strong>user.pem</strong> is as same as the <strong>chef_root_user_key.pem</strong> that is created on the Chef-server</li>
+<li>The content of <strong>validator.pem</strong> is as same as the <strong>chef-org-validator.pem</strong> that is created on the Chef-server</li>
+<li>Create the knife.rb in the <strong>.chef</strong> folder and paste the following content in the file</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">current_dir &#x3D; File.dirname(__FILE__)</span><br><span class="line">log_level                :info</span><br><span class="line">log_location             STDOUT</span><br><span class="line">node_name                &quot;yangkai&quot;</span><br><span class="line">client_key               &quot;#&#123;current_dir&#125;&#x2F;user.pem&quot;</span><br><span class="line">chef_server_url          &quot;https:&#x2F;&#x2F;your-chef-server-url&quot;</span><br><span class="line">cookbook_path            [&quot;#&#123;current_dir&#125;&#x2F;..&#x2F;cookbooks&quot;]</span><br></pre></td></tr></table></figure>
+<p><strong>Note</strong> Server url should be something like ‘ip-172-31-23-34.us-east-2.compute.internal’ Use Internal Address, otherwise it will go wrong when <code>knife ssl check</code></p>
+<ul>
+<li>Check client status<ul>
+<li>Type in the following command to check if your node is configured correctly with the server:</li>
+<li>execute: <code>knife ssl fetch</code> you should see something like this:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">WARNING: Certificates from ip-172-31-23-34.us-east-2.compute.internal will be fetched and placed in your trusted_cert</span><br><span class="line">directory (&#x2F;home&#x2F;ubuntu&#x2F;learn-chef&#x2F;.chef&#x2F;trusted_certs).</span><br><span class="line"></span><br><span class="line">Knife has no means to verify these are the correct certificates. You should</span><br><span class="line">verify the authenticity of these certificates after downloading.</span><br><span class="line"></span><br><span class="line">Adding certificate for ip-172-31-23-34_us-east-2_compute_internal in &#x2F;home&#x2F;ubuntu&#x2F;learn-chef&#x2F;.chef&#x2F;trusted_certs&#x2F;ip-172-31-23-34_us-east-2_compute_internal.crt</span><br></pre></td></tr></table></figure></li>
+<li>execute: <code>knife ssl check</code> you should see something like this:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Connecting to host ip-172-31-23-34.us-east-2.compute.internal:443</span><br><span class="line">Successfully verified certificates from &#96;ip-172-31-23-34.us-east-2.compute.internal&#39;</span><br></pre></td></tr></table></figure></li>
+<li>execute: <code>knife client list</code> you should see something like this:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">greatchef-validator</span><br><span class="line">node1-ubuntu-14.04</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<p><strong>Above are all steps I setup my AWS instance. From my experience, the swap area and storage size is mandatory, otherwise you will have trouble to logon to your instance when the server is running.</strong></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Tech-AWS-chef-Linux-DevOps/" rel="tag"># Tech - AWS - chef - Linux - DevOps</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/05/31/socket-exp-md/" rel="prev" title="Unix domain socket programming">
+      <i class="fa fa-chevron-left"></i> Unix domain socket programming
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/06/28/puppet%20learning/" rel="next" title="Install Puppet-server on AWS free tier machine">
+      Install Puppet-server on AWS free tier machine <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Step1-Lunch-instance"><span class="nav-number">1.</span> <span class="nav-text">Step1: Lunch instance</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step2-Add-Swap-area-To-make-sure-your-server-will-run-smoothly"><span class="nav-number">2.</span> <span class="nav-text">Step2: Add Swap area(To make sure your server will run smoothly)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-3-Install-Chef-server"><span class="nav-number">3.</span> <span class="nav-text">Step 3: Install Chef-server</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Setp-1-Install-Chef-server-core"><span class="nav-number">3.1.</span> <span class="nav-text">Setp-1: Install Chef-server-core</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-2-Install-the-WebUI-for-management"><span class="nav-number">3.2.</span> <span class="nav-text">Step-2: Install the WebUI for management</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-4-Config-your-Workstation"><span class="nav-number">4.</span> <span class="nav-text">Step 4: Config your Workstation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-1-Install-ChefDk"><span class="nav-number">4.1.</span> <span class="nav-text">Step-1: Install ChefDk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-2-Config-workstation-detail"><span class="nav-number">4.2.</span> <span class="nav-text">Step-2: Config workstation detail</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yangkai Lyu</p>
+  <div class="site-description" itemprop="description">Sharing, Learning, Living</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yangkai Lyu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.littlestep.cc","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Recenetly I was preparing a interview of Embedded Application Software Engineer position. I gathered some questions and answers here for me to reference in the future. Top Embedded C programming Inter">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Embedded related Q&amp;A">
+<meta property="og:url" content="https://blog.littlestep.cc/2017/04/19/embedded-qa-md/index.html">
+<meta property="og:site_name" content="Yangkai&#39;s Blog">
+<meta property="og:description" content="Recenetly I was preparing a interview of Embedded Application Software Engineer position. I gathered some questions and answers here for me to reference in the future. Top Embedded C programming Inter">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-04-20T04:00:00.000Z">
+<meta property="article:modified_time" content="2021-03-11T00:52:15.853Z">
+<meta property="article:author" content="Yangkai Lyu">
+<meta property="article:tag" content="Learning - Embedded">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://blog.littlestep.cc/2017/04/19/embedded-qa-md/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Embedded related Q&A | Yangkai's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96198066-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-96198066-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Yangkai's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Standing on the shoulder of giants</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.littlestep.cc/2017/04/19/embedded-qa-md/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yangkai Lyu">
+      <meta itemprop="description" content="Sharing, Learning, Living">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yangkai's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Embedded related Q&A
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-04-20 00:00:00" itemprop="dateCreated datePublished" datetime="2017-04-20T00:00:00-04:00">2017-04-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-03-10 19:52:15" itemprop="dateModified" datetime="2021-03-10T19:52:15-05:00">2021-03-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Learning/" itemprop="url" rel="index"><span itemprop="name">Learning</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Recenetly I was preparing a interview of Embedded Application Software Engineer position. I gathered some questions and answers here for me to reference in the future.</p>
+<p>Top Embedded C programming Interview questions and answers for freshers and experienced on embedded system concepts like RTOS, ISR, processors etc. with best answers.</p>
+<span id="more"></span>
+<h2 id="1-What-is-the-use-of-volatile-keyword"><a href="#1-What-is-the-use-of-volatile-keyword" class="headerlink" title="1) What is the use of volatile keyword?"></a>1) What is the use of volatile keyword?</h2><blockquote>
+<p>The C’s volatile keyword is a qualifier that tells the compiler not to optimize when applied to a variable. By declaring a variable volatile, we can tell the compiler that the value of the variable may change any moment from outside of the scope of the program. A variable should be declared volatile whenever its value could change unexpectedly and beyond the comprehension of the compiler.  </p>
+<p>In those cases it is required not to optimize the code, doing so may lead to erroneous result and load the variable every time it is used in the program. Volatile keyword is useful for memory-mapped peripheral registers, global variables modified by an interrupt service routine, global variables accessed by multiple tasks within a multi-threaded application.  </p>
+<p>Volatile keyword is used to prevent compiler to optimize a variable which can change unexpectedly beyond compiler’s comprehension. Suppose, we have a variable which may be changed from scope out of the program, say by a signal, we do not want the compiler to optimize it. Rather than optimizing that variable, we want the compiler to load the variable every time it is encountered. If we declare a variable volatile, compiler will not cache it in its register.  </p>
+</blockquote>
+<h2 id="2-Can-a-variable-be-both-const-and-volatile"><a href="#2-Can-a-variable-be-both-const-and-volatile" class="headerlink" title="2) Can a variable be both const and volatile?"></a>2) Can a variable be both const and volatile?</h2><blockquote>
+<p>The const keyword make sure that the value of the variable declared as const can’t be changed. This statement holds true in the scope of the program. The value can still be changed by outside intervention. So, the use of const with volatile keyword makes perfect sense.  </p>
+</blockquote>
+<h2 id="3-Can-a-pointer-be-volatile"><a href="#3-Can-a-pointer-be-volatile" class="headerlink" title="3) Can a pointer be volatile?"></a>3) Can a pointer be volatile?</h2><blockquote>
+<p>If we see the declaration volatile int *p, it means that the pointer itself is not volatile and points to an integer that is volatile. This is to inform the compiler that pointer p is pointing to an integer and the value of that integer may change unexpectedly even if there is no code indicating so in the program.  </p>
+</blockquote>
+<h2 id="4-What-is-size-of-character-integer-integer-pointer-character-pointer"><a href="#4-What-is-size-of-character-integer-integer-pointer-character-pointer" class="headerlink" title="4) What is size of character, integer, integer pointer, character pointer?"></a>4) What is size of character, integer, integer pointer, character pointer?</h2><blockquote>
+<p>The sizeof character is 1 byte.<br>Size of integer is 4 bytes.<br>Size of integer pointer and character is 8 bytes on 64 bit machine and 4 bytes on 32 bit machine.  </p>
+</blockquote>
+<h2 id="5-What-is-NULL-pointer-and-what-is-its-use"><a href="#5-What-is-NULL-pointer-and-what-is-its-use" class="headerlink" title="5) What is NULL pointer and what is its use?"></a>5) What is NULL pointer and what is its use?</h2><blockquote>
+<p>The NULL is a macro defined in C. Null pointer actually means a pointer that does not point to any valid location. We define a pointer to be null when we want to make sure that the pointer does not point to any valid location and not to use that pointer to change anything. If we don’t use null pointer, then we can’t verify whether this pointer points to any valid location or not.  </p>
+</blockquote>
+<h2 id="6-What-is-void-pointer-and-what-is-its-use"><a href="#6-What-is-void-pointer-and-what-is-its-use" class="headerlink" title="6) What is void pointer and what is its use?"></a>6) What is void pointer and what is its use?</h2><blockquote>
+<p>The void pointer means that it points to a variable that can be of any type. Other pointers points to a specific type of variable while void pointer is a somewhat generic pointer and can be pointed to any data type, be it standard data type(int, char etc) or user define data type (structure, union etc.). We can pass any kind of pointer and reference it as a void pointer. But to dereference it, we have to type the void pointer to correct data type.  </p>
+</blockquote>
+<h2 id="7-What-is-ISR"><a href="#7-What-is-ISR" class="headerlink" title="7) What is ISR?"></a>7) What is ISR?</h2><blockquote>
+<p>An ISR(Interrupt Service Routine) is an interrupt handler, a callback subroutine which is called when a interrupt is encountered.  </p>
+</blockquote>
+<h2 id="8-What-is-return-type-of-ISR"><a href="#8-What-is-return-type-of-ISR" class="headerlink" title="8) What is return type of ISR?"></a>8) What is return type of ISR?</h2><blockquote>
+<p>ISR does not return anything. An ISR returns nothing because there is no caller in the code to read the returned values.  </p>
+</blockquote>
+<h2 id="9-What-is-interrupt-latency"><a href="#9-What-is-interrupt-latency" class="headerlink" title="9) What is interrupt latency?"></a>9) What is interrupt latency?</h2><blockquote>
+<p>Interrupt latency is the time required for an ISR responds to an interrupt.  </p>
+</blockquote>
+<h2 id="10-How-to-reduce-interrupt-latency"><a href="#10-How-to-reduce-interrupt-latency" class="headerlink" title="10) How to reduce interrupt latency?"></a>10) How to reduce interrupt latency?</h2><blockquote>
+<p>Interrupt latency can be minimized by writing short ISR routine and by not delaying interrupts for more time.  </p>
+</blockquote>
+<h2 id="11-Can-we-use-any-function-inside-ISR"><a href="#11-Can-we-use-any-function-inside-ISR" class="headerlink" title="11) Can we use any function inside ISR?"></a>11) Can we use any function inside ISR?</h2><blockquote>
+<p>We can use function inside ISR as long as that function is not invoked from other portion of the code.  </p>
+</blockquote>
+<h2 id="12-Can-we-use-printf-inside-ISR"><a href="#12-Can-we-use-printf-inside-ISR" class="headerlink" title="12) Can we use printf inside ISR?"></a>12) Can we use printf inside ISR?</h2><blockquote>
+<p>Printf function in ISR is not supported because printf function is not reentrant, thread safe and uses dynamic memory allocation which takes a lot of time and can affect the speed of an ISR up to a great extent.  </p>
+</blockquote>
+<h2 id="13-Can-we-put-breakpoint-inside-ISR"><a href="#13-Can-we-put-breakpoint-inside-ISR" class="headerlink" title="13) Can we put breakpoint inside ISR?"></a>13) Can we put breakpoint inside ISR?</h2><blockquote>
+<p>Putting a break point inside ISR is not a good idea because debugging will take some time and a difference of half or more second will lead to different behavior of hardware. To debug ISR, definitive logs are better.  </p>
+</blockquote>
+<h2 id="14-Can-static-variables-be-declared-in-a-header-file"><a href="#14-Can-static-variables-be-declared-in-a-header-file" class="headerlink" title="14) Can static variables be declared in a header file?"></a>14) Can static variables be declared in a header file?</h2><blockquote>
+<p>A static variable cannot be declared without defining it. A static variable can be defined in the header file. But doing so, the result will be having a private copy of that variable in each source file which includes the header file. So it will be wise not to declare a static variable in header file, unless you are dealing with a different scenario.  </p>
+</blockquote>
+<h2 id="15-Is-Count-Down-to-Zero-Loop-better-than-Count-Up-Loops"><a href="#15-Is-Count-Down-to-Zero-Loop-better-than-Count-Up-Loops" class="headerlink" title="15) Is Count Down_to_Zero Loop better than Count_Up_Loops?"></a>15) Is Count Down_to_Zero Loop better than Count_Up_Loops?</h2><blockquote>
+<p>Count down to zero loops are better. Reason behind this is that at loop termination, comparison to zero can be optimized by the compiler. Most processors have instruction for comparing to zero. So they don’t need to load the loop variable and the maximum value, subtract them and then compare to zero. That is why count down to zero loop is better.  </p>
+</blockquote>
+<h2 id="16-What-are-inline-functions"><a href="#16-What-are-inline-functions" class="headerlink" title="16) What are inline functions?"></a>16) What are inline functions?</h2><blockquote>
+<p>The ARM compilers support inline functions with the keyword __inline. These functions have a small definition and the function body is substituted in each call to the inline function. The argument passing and stack maintenance is skipped and it results in faster code execution, but it increases code size, particularly if the inline function is large or one inline function is used often.  </p>
+</blockquote>
+<h2 id="17-Can-include-files-be-nested"><a href="#17-Can-include-files-be-nested" class="headerlink" title="17) Can include files be nested?"></a>17) Can include files be nested?</h2><blockquote>
+<p>Yes. Include files can be nested any number of times. But you have to make sure that you are not including the same file twice. There is no limit to how many header files that can be included. But the number can be compiler dependent, since including multiple header files may cause your computer to run out of stack memory.  </p>
+</blockquote>
+<h2 id="18-What-are-the-uses-of-the-keyword-static"><a href="#18-What-are-the-uses-of-the-keyword-static" class="headerlink" title="18) What are the uses of the keyword static?"></a>18) What are the uses of the keyword static?</h2><blockquote>
+<p>Static keyword can be used with variables as well as functions. A variable declared static will be of static storage class and within a function, it maintains its value between calls to that function. A variable declared as static within a file, scope of that variable will be within that file, but it can’t be accessed by other files.  </p>
+<p>Functions declared static within a module can be accessed by other functions within that module. That is, the scope of the function is localized to the module within which it is declared.  </p>
+</blockquote>
+<h2 id="19-What-is-Top-half-amp-bottom-half-of-a-kernel"><a href="#19-What-is-Top-half-amp-bottom-half-of-a-kernel" class="headerlink" title="19) What is Top half &amp; bottom half of a kernel?"></a>19) What is Top half &amp; bottom half of a kernel?</h2><blockquote>
+<p>Sometimes to handle an interrupt, a substantial amount of work has to be done. But it conflicts with the speed need for an interrupt handler. To handle this situation, Linux splits the handler into two parts – Top half and Bottom half. The top half is the routine that actually responds to the interrupt. The bottom half on the other hand is a routine that is scheduled by the upper half to be executed later at a safer time.  </p>
+<p>All interrupts are enabled during execution of the bottom half. The top half saves the device data into the specific buffer, schedules bottom half and exits. The bottom half does the rest. This way the top half can service a new interrupt while the bottom half is working on the previous.  </p>
+</blockquote>
+<h2 id="20-Difference-between-RISC-and-CISC-processor"><a href="#20-Difference-between-RISC-and-CISC-processor" class="headerlink" title="20) Difference between RISC and CISC processor."></a>20) Difference between RISC and CISC processor.</h2><blockquote>
+<p>RISC (Reduced Instruction Set Computer) could carry out a few sets of simple instructions simultaneously. Fewer transistors are used to manufacture RISC, which makes RISC cheaper. RISC has uniform instruction set and those instructions are also fewer in number. Due to the less number of instructions as well as instructions being simple, the RISC computers are faster. RISC emphasis on software rather than hardware. RISC can execute instructions in one machine cycle.  </p>
+<p>CISC (Complex Instruction Set Computer) is capable of executing multiple operations through a single instruction. CISC have rich and complex instruction set and more number of addressing modes. CISC emphasis on hardware rather that software, making it costlier than RISC. It has a small code size, high cycles per second and it is slower compared to RISC.  </p>
+</blockquote>
+<h2 id="21-What-is-RTOS"><a href="#21-What-is-RTOS" class="headerlink" title="21) What is RTOS?"></a>21) What is RTOS?</h2><blockquote>
+<p>In an operating system, there is a module called the scheduler, which schedules different tasks and determines when a process will execute on the processor. This way, the multi-tasking is achieved. The scheduler in a Real Time Operating System (RTOS) is designed to provide a predictable execution pattern. In an embedded system, a certain event must be entertained in strictly defined time.  </p>
+<p>To meet real time requirements, the behavior of the scheduler must be predictable. This type of OS which have a scheduler with predictable execution pattern is called Real Time OS(RTOS). The features of an RTOS are:<br>— Context switching latency should be short.<br>— Interrupt latency should be short.<br>— Interrupt dispatch latency should be short.<br>— Reliable and time bound inter process mechanisms.<br>— Should support kernel preemption.  </p>
+</blockquote>
+<h2 id="22-What-is-the-difference-between-hard-real-time-and-soft-real-time-OS"><a href="#22-What-is-the-difference-between-hard-real-time-and-soft-real-time-OS" class="headerlink" title="22) What is the difference between hard real-time and soft real-time OS?"></a>22) What is the difference between hard real-time and soft real-time OS?</h2><blockquote>
+<p>A Hard real-time system strictly adheres to the deadline associated with the task. If the system fails to meet the deadline, even once, the system is considered to have failed. In case of a soft real-time system, missing a deadline is acceptable. In this type of system, a critical real-time task gets priority over other tasks and retains that priority until it completes.  </p>
+</blockquote>
+<h2 id="23-What-type-of-scheduling-is-there-in-RTOS"><a href="#23-What-type-of-scheduling-is-there-in-RTOS" class="headerlink" title="23) What type of scheduling is there in RTOS?"></a>23) What type of scheduling is there in RTOS?</h2><blockquote>
+<p>RTOS uses pre-emptive scheduling. In pre-emptive scheduling, the higher priority task can interrupt a running process and the interrupted process will be resumed later.  </p>
+</blockquote>
+<h2 id="24-What-is-priority-inversion"><a href="#24-What-is-priority-inversion" class="headerlink" title="24) What is priority inversion?"></a>24) What is priority inversion?</h2><blockquote>
+<p>If two tasks share a resource, the one with higher priority will run first. However, if the lower-priority task is using the shared resource when the higher-priority task becomes ready, then the higher-priority task must wait for the lower-priority task to finish. In this scenario, even though the task has higher priority it needs to wait for the completion of the lower-priority task with the shared resource. This is called priority inversion.  </p>
+</blockquote>
+<h2 id="25-What-is-priority-inheritance"><a href="#25-What-is-priority-inheritance" class="headerlink" title="25) What is priority inheritance?"></a>25) What is priority inheritance?</h2><blockquote>
+<p>Priority inheritance is a solution to the priority inversion problem. The process waiting for any resource which has a resource lock will have the maximum priority. This is priority inheritance. When one or more high priority jobs are blocked by a job, the original priority assignment is ignored and execution of critical section will be assigned to the job with the highest priority in this elevated scenario. The job returns to the original priority level soon after executing the critical section.  </p>
+</blockquote>
+<h2 id="26-How-many-types-of-IPC-mechanism-you-know"><a href="#26-How-many-types-of-IPC-mechanism-you-know" class="headerlink" title="26) How many types of IPC mechanism you know?"></a>26) How many types of IPC mechanism you know?</h2><blockquote>
+<p>Different types of IPC mechanism are:<br>— Pipes<br>— Named pipes or FIFO<br>— Semaphores<br>— Shared memory<br>— Message queue<br>— Socket  </p>
+</blockquote>
+<h2 id="27-What-is-semaphore"><a href="#27-What-is-semaphore" class="headerlink" title="27) What is semaphore?"></a>27) What is semaphore?</h2><blockquote>
+<p>Semaphore is actually a variable or abstract data type which controls access to a common resource by multiple processes. Semaphores are of two types:  </p>
+<p>— Binary semaphore – It can have only two values (0 and 1). The semaphore value is set to 1 by the process in charge, when the resource is available.<br>— Counting semaphore – It can have value greater than one. It is used to control access to a pool of resources.  </p>
+</blockquote>
+<h2 id="28-What-is-spin-lock"><a href="#28-What-is-spin-lock" class="headerlink" title="28) What is spin lock?"></a>28) What is spin lock?</h2><blockquote>
+<p>If a resource is locked, a thread that wants to access that resource may repetitively check whether the resource is available. During that time, the thread may loop and check the resource without doing any useful work. Suck a lock is termed as spin lock.  </p>
+</blockquote>
+<h2 id="29-What-is-difference-between-binary-semaphore-and-mutex"><a href="#29-What-is-difference-between-binary-semaphore-and-mutex" class="headerlink" title="29) What is difference between binary semaphore and mutex?"></a>29) What is difference between binary semaphore and mutex?</h2><blockquote>
+<p>The differences between binary semaphore and mutex are as follows -  </p>
+<p>Mutual exclusion and synchronization can be used by binary semaphore while mutex is used only for mutual exclusion.<br>A mutex can be released by the same thread which acquired it. Semaphore values can be changed by other thread also.<br>From an ISR, a mutex can not be used.<br>The advantage of semaphores is that, they can be used to synchronize two unrelated processes trying to access the same resource.<br>Semaphores can act as mutex, but the opposite is not possible.  </p>
+</blockquote>
+<h2 id="30-What-is-virtual-memory"><a href="#30-What-is-virtual-memory" class="headerlink" title="30) What is virtual memory?"></a>30) What is virtual memory?</h2><blockquote>
+<p>Virtual memory is a technique that allows processes to allocate memory in case of physical memory shortage using automatic storage allocation upon a request. The advantage of the virtual memory is that the program can have a larger memory than the physical memory. It allows large virtual memory to be provided when only a smaller physical memory is available. Virtual memory can be implemented using paging.  </p>
+<p>A paging system is quite similar to a paging system with swapping. When we want to execute a process, we swap it into memory. Here we use a lazy swapper called pager rather than swapping the entire process into memory. When a process is to be swapped in, the pager guesses which pages will be used based on some algorithm, before the process is swapped out again. Instead of swapping whole process, the pager brings only the necessary pages into memory. By that way, it avoids reading in unnecessary memory pages, decreasing the swap time and the amount of physical memory.  </p>
+</blockquote>
+<h2 id="31-What-is-kernel-paging"><a href="#31-What-is-kernel-paging" class="headerlink" title="31) What is kernel paging?"></a>31) What is kernel paging?</h2><blockquote>
+<p>Paging is a memory management scheme by which computers can store and retrieve data from the secondary memory storage when needed in to primary memory. In this scheme, the operating system retrieves data from secondary storage in same-size blocks called pages. The paging scheme allows the physical address space of a process to be non continuous. Paging allows OS to use secondary storage for data that does not fit entirely into physical memory.  </p>
+</blockquote>
+<h2 id="32-Can-structures-be-passed-to-the-functions-by-value"><a href="#32-Can-structures-be-passed-to-the-functions-by-value" class="headerlink" title="32) Can structures be passed to the functions by value?"></a>32) Can structures be passed to the functions by value?</h2><blockquote>
+<p>Passing structure by its value to a function is possible, but not a good programming practice. First of all, if we pass the structure by value and the function changes some of those values, then the value change is not reflected in caller function. Also, if the structure is big, then passing the structure by value means copying the whole structure to the function argument stack which can slow the program by a significant amount.  </p>
+</blockquote>
+<h2 id="33-Why-cannot-arrays-be-passed-by-values-to-functions"><a href="#33-Why-cannot-arrays-be-passed-by-values-to-functions" class="headerlink" title="33) Why cannot arrays be passed by values to functions?"></a>33) Why cannot arrays be passed by values to functions?</h2><blockquote>
+<p>In C, the array name itself represents the address of the first element. So, even if we pass the array name as argument, it will be passed as reference and not its address.  </p>
+</blockquote>
+<h2 id="34-Advantages-and-disadvantages-of-using-macro-and-inline-functions"><a href="#34-Advantages-and-disadvantages-of-using-macro-and-inline-functions" class="headerlink" title="34) Advantages and disadvantages of using macro and inline functions?"></a>34) Advantages and disadvantages of using macro and inline functions?</h2><blockquote>
+<p>The advantage of the macro and inline function is that the overhead for argument passing and stuff is reduced as the function are in-lined. The advantage of macro function is that we can write type insensitive functions. It is also the disadvantage of macro function as macro functions can’t do validation check. The macro and inline function also increases the size of the executable.  </p>
+</blockquote>
+<h2 id="35-What-happens-when-recursive-functions-are-declared-inline"><a href="#35-What-happens-when-recursive-functions-are-declared-inline" class="headerlink" title="35) What happens when recursive functions are declared inline?"></a>35) What happens when recursive functions are declared inline?</h2><blockquote>
+<p>Inlining an recursive function reduces the overhead of saving context on stack. But, inline is merely a suggestion to the compiler and it does not guarantee that a function will be inlined. Obviously, the compiler won’t be able to inline a recursive function infinitely. It may not inline it at all or it may inline it, just a few levels deep.  </p>
+</blockquote>
+<h2 id="36-define-cat-x-y-x-y-concatenates-x-to-y-But-cat-cat-1-2-3-does-not-expand-but-gives-preprocessor-warning-Why"><a href="#36-define-cat-x-y-x-y-concatenates-x-to-y-But-cat-cat-1-2-3-does-not-expand-but-gives-preprocessor-warning-Why" class="headerlink" title="36) #define cat(x,y) x##y concatenates x to y. But cat(cat(1,2),3) does not expand but gives preprocessor warning. Why?"></a>36) #define cat(x,y) x##y concatenates x to y. But cat(cat(1,2),3) does not expand but gives preprocessor warning. Why?</h2><blockquote>
+<p>The cat(x, y) expands to x## y. It just pastes x and y. But in case of cat(cat(1,2),3), it expands to cat(1,2)## 3 instead of 1## 2##3. That is why it is giving preprocessor warning.  </p>
+</blockquote>
+<h2 id="37-ip-increments-what"><a href="#37-ip-increments-what" class="headerlink" title="37) ++*ip increments what?"></a>37) ++*ip increments what?</h2><blockquote>
+<p>It increments the value to which ip points to and not the address.  </p>
+</blockquote>
+<h2 id="38-Declare-a-manifest-constant-that-returns-the-number-of-seconds-in-a-year-using-preprocessor-Disregard-leap-years-in-your-answer"><a href="#38-Declare-a-manifest-constant-that-returns-the-number-of-seconds-in-a-year-using-preprocessor-Disregard-leap-years-in-your-answer" class="headerlink" title="38) Declare a manifest constant that returns the number of seconds in a year using preprocessor? Disregard leap years in your answer."></a>38) Declare a manifest constant that returns the number of seconds in a year using preprocessor? Disregard leap years in your answer.</h2><blockquote>
+<p>The correct answer will be -<br> #define SECONDS_IN_YEAR (60UL * 60UL * 24UL * 365UL)<br>Do not forget to use UL, since the output will be very big integer.  </p>
+</blockquote>
+<h2 id="39-Using-the-variable-a-write-down-definitions-for-the-following"><a href="#39-Using-the-variable-a-write-down-definitions-for-the-following" class="headerlink" title="39) Using the variable a, write down definitions for the following:"></a>39) Using the variable a, write down definitions for the following:</h2><blockquote>
+<p>An integer — int a;<br>A pointer to an integer — int *a;<br>A pointer to a pointer to an integer — int a;<br>An array of ten integers — int a[10];<br>An array of ten pointers to integers — int *a[10];<br>A pointer to an array of ten integers — int (*a)[10];<br>A pointer to a function that takes an integer as an argument and returns an integer — int (*a)(int);<br>Pass an array of ten pointers to a function that take an integer argument and return an integer — int (*a[10])(int);  </p>
+</blockquote>
+<h2 id="40-Consider-the-two-statements-below-and-point-out-which-one-is-preferred-and-why"><a href="#40-Consider-the-two-statements-below-and-point-out-which-one-is-preferred-and-why" class="headerlink" title="40) Consider the two statements below and point out which one is preferred and why?"></a>40) Consider the two statements below and point out which one is preferred and why?</h2><blockquote>
+<p>#define B struct A *<br>typedef struct A * C;<br>The typedef is preferred. Both statements declare pointer to struct A to something else and in one glance both looks fine. But there is one issue with the define statement. Consider a situation where we want to declare p1 and p2 as pointer to struct A. We can do this by - C p1, p2;<br>But doing - B p1, p2, it will be expanded to struct A * p1, p2. It means that p1 is a pointer to struct A but p2 is a variable of struct A and not a pointer.  </p>
+</blockquote>
+<h2 id="41-What-will-be-the-output-of-the-following-code-fragment"><a href="#41-What-will-be-the-output-of-the-following-code-fragment" class="headerlink" title="41) What will be the output of the following code fragment?"></a>41) What will be the output of the following code fragment?</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *ptr;</span><br><span class="line"><span class="keyword">if</span> ((ptr = (<span class="keyword">char</span> *)<span class="built_in">malloc</span>(<span class="number">0</span>)) == <span class="literal">NULL</span>)</span><br><span class="line">&#123;</span><br><span class="line">   <span class="built_in">puts</span>(<span class="string">&quot;Got a null pointer&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="built_in">puts</span>(<span class="string">&quot;Got a valid pointer&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>The output will be “Got a valid pointer”. It is because malloc(0) returns a valid pointer, but it allocates size 0. So this pointer is of no use, but we can use this free pointer and the program will not crash.  </p>
+</blockquote>
+<h2 id="42-What-is-purpose-of-keyword-const"><a href="#42-What-is-purpose-of-keyword-const" class="headerlink" title="42) What is purpose of keyword const?"></a>42) What is purpose of keyword const?</h2><blockquote>
+<p>The const keyword when used in c means that the value of the variable will not be changed. But the value of the variable can be changed using a pointer.<br>The const identifier can be used like this —  const int a; or int const a;<br>Both means the same and it indicates that a is an constant integer. But if we   </p>
+<p>declare something like this —  const int *p<br>then it does not mean that the pointer is constant but rather it is pointing to an constant integer.<br>The declaration of an const pointer to a non-constant integer will look like this — int * cont p;  </p>
+</blockquote>
+<h2 id="43-What-do-the-following-declarations-mean"><a href="#43-What-do-the-following-declarations-mean" class="headerlink" title="43) What do the following declarations mean?"></a>43) What do the following declarations mean?</h2><blockquote>
+<p>const int a; — means that a is a constant integer.<br>int const a; — means that a is a constant integer.<br>const int *a; —  means that a is a pointer to a constant integer.<br>int * const a; — means that a is a constant pointer to a non-constant integer.<br>int const * a const; means that a is a constant pointer to a constant integer.  </p>
+</blockquote>
+<h2 id="44-How-to-decide-whether-given-processor-is-using-little-endian-format-or-big-endian-format"><a href="#44-How-to-decide-whether-given-processor-is-using-little-endian-format-or-big-endian-format" class="headerlink" title="44) How to decide whether given processor is using little endian format or big endian format ?"></a>44) How to decide whether given processor is using little endian format or big endian format ?</h2><blockquote>
+<p>The following program can find out the endianness of the processor.  </p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line">main ()</span><br><span class="line">&#123;</span><br><span class="line"> <span class="class"><span class="keyword">union</span> <span class="title">Test</span></span></span><br><span class="line"><span class="class"> &#123;</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> c[<span class="number">2</span>];</span><br><span class="line"> &#125;;</span><br><span class="line"> <span class="class"><span class="keyword">union</span> <span class="title">Test</span> <span class="title">a</span> =</span> &#123;<span class="number">300</span>&#125;;</span><br><span class="line"> <span class="keyword">if</span>((a.c [<span class="number">0</span>] == <span class="number">1</span>) &amp;&amp;  (a.c [<span class="number">1</span>] == <span class="number">44</span>))</span><br><span class="line"> &#123;</span><br><span class="line">    <span class="built_in">printf</span> (<span class="string">&quot;BIG ENDIAN\n&quot;</span>);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">else</span></span><br><span class="line"> &#123;</span><br><span class="line">    <span class="built_in">printf</span> (<span class="string">&quot;LITTLE ENDIAN\n&quot;</span>);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="45-What-is-the-concatenation-operator"><a href="#45-What-is-the-concatenation-operator" class="headerlink" title="45) What is the concatenation operator?"></a>45) What is the concatenation operator?</h2><blockquote>
+<p>The Concatenation operator (## ) in macro is used to concatenate two arguments. Literally, we can say that the arguments are concatenated, but actually their value are not concatenated. Think it this way, if we pass A and B to a macro which uses ## to concatenate those two, then the result will be AB. Consider the example to clear the confusion-  </p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SOME_MACRO(a, b) a##b</span></span><br><span class="line">main()</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">int</span> var = <span class="number">15</span>;</span><br><span class="line">  <span class="built_in">printf</span>(“%d”, SOME_MACRO(v, ar));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Output of the above program will be 15.  </p>
+</blockquote>
+<h2 id="46-Infinite-loops-often-arise-in-embedded-systems-How-does-you-code-an-infinite-loop-in-C"><a href="#46-Infinite-loops-often-arise-in-embedded-systems-How-does-you-code-an-infinite-loop-in-C" class="headerlink" title="46) Infinite loops often arise in embedded systems. How does you code an infinite loop in C?"></a>46) Infinite loops often arise in embedded systems. How does you code an infinite loop in C?</h2><blockquote>
+<p>There are several ways to code an infinite loop -  </p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)&#123; &#125;</span><br><span class="line"><span class="keyword">or</span>,</span><br><span class="line"><span class="keyword">for</span>(;;)&#123; &#125;</span><br><span class="line"><span class="keyword">or</span>,</span><br><span class="line">Loop:</span><br><span class="line"><span class="keyword">goto</span> Loop</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>But many programmers prefer the first solution as it is easy to read and self-explanatory, unlike the second or the last one.  </p>
+</blockquote>
+<h2 id="47-Guess-the-output"><a href="#47-Guess-the-output" class="headerlink" title="47) Guess the output:"></a>47) Guess the output:</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">main()</span><br><span class="line">&#123;</span><br><span class="line"> 	fork();</span><br><span class="line"> 	fork();</span><br><span class="line"> 	fork();</span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">&quot;hello world\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>It will print “hello world’ 8 times. The main() will print one time and creates 3 children, let us say Child_1, Child_2, Child_3. All of them printed once. The Child_3 will not create any child. Child2 will create one child and that child will print once. Child_1 will create two children, say Child_4 and Child_5 and each of them will print once. Child_4 will again create another child and that child will print one time. A total of eight times the printf statement will be executed.  </p>
+</blockquote>
+<h2 id="48-What-is-forward-reference-w-r-t-pointers-in-c"><a href="#48-What-is-forward-reference-w-r-t-pointers-in-c" class="headerlink" title="48) What is forward reference w.r.t. pointers in c?"></a>48) What is forward reference w.r.t. pointers in c?</h2><blockquote>
+<p>Forward Referencing with respect to pointers is used when a pointer is declared and compiler reserves the memory for the pointer, but the variable or data type is not defined to which the pointer points to. For example   </p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">A</span> *<span class="title">p</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"> <span class="comment">// members</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="49-How-is-generic-list-manipulation-function-written-which-accepts-elements-of-any-kind"><a href="#49-How-is-generic-list-manipulation-function-written-which-accepts-elements-of-any-kind" class="headerlink" title="49) How is generic list manipulation function written which accepts elements of any kind?"></a>49) How is generic list manipulation function written which accepts elements of any kind?</h2><blockquote>
+<p>It can be achieved using void pointer. A list may be expressed by a structure as shown below  </p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"> node *next;</span><br><span class="line"> <span class="comment">/* data part */</span></span><br><span class="line"> ......</span><br><span class="line">&#125;node;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Assuming that the generic list may be like this   </p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"> node *next;</span><br><span class="line"> <span class="keyword">void</span> *data;</span><br><span class="line">&#125;node;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>This way, the generic manipulation function can work on this type of structures.  </p>
+</blockquote>
+<h2 id="50-How-can-you-define-a-structure-with-bit-field-members"><a href="#50-How-can-you-define-a-structure-with-bit-field-members" class="headerlink" title="50) How can you define a structure with bit field members?"></a>50) How can you define a structure with bit field members?</h2><blockquote>
+<p>Bit field members can be declared as shown below  </p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"> <span class="keyword">char</span> c1 : <span class="number">3</span>;</span><br><span class="line"> <span class="keyword">char</span> c2 : <span class="number">4</span>;</span><br><span class="line"> <span class="keyword">char</span> c3 : <span class="number">1</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Here c1, c2 and c3 are members of a structure with width 3, 4, and 1 bit respectively. The ‘:’ indicates that they are bit fields and the following numbers indicates the width in bits.  </p>
+</blockquote>
+<h2 id="51-How-do-you-write-a-function-which-takes-2-arguments-a-byte-and-a-field-in-the-byte-and-returns-the-value-of-the-field-in-that-byte"><a href="#51-How-do-you-write-a-function-which-takes-2-arguments-a-byte-and-a-field-in-the-byte-and-returns-the-value-of-the-field-in-that-byte" class="headerlink" title="51) How do you write a function which takes 2 arguments - a byte and a field in the byte and returns the value of the field in that byte?"></a>51) How do you write a function which takes 2 arguments - a byte and a field in the byte and returns the value of the field in that byte?</h2><blockquote>
+<p>The function will look like this -  </p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">GetFieldValue</span><span class="params">(<span class="keyword">int</span> byte, <span class="keyword">int</span> field )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  byte = byte &gt;&gt; field;</span><br><span class="line">  byte = byte &amp; <span class="number">0x01</span>;</span><br><span class="line">  <span class="keyword">return</span> byte;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>The byte is right shifted exactly n times where n is same as the field value. That way, our intended value ends up in the 0th bit position. “Bitwise And” with 1 can get the intended value. The function then returns the intended value.  </p>
+</blockquote>
+<h2 id="52-Which-parameters-decide-the-size-of-data-type-for-a-processor"><a href="#52-Which-parameters-decide-the-size-of-data-type-for-a-processor" class="headerlink" title="52) Which parameters decide the size of data type for a processor ?"></a>52) Which parameters decide the size of data type for a processor ?</h2><blockquote>
+<p>Actually, compiler is the one responsible for size of the data type. But it is true as long as OS allows that. If it is not allowable by OS, OS can force the size.  </p>
+</blockquote>
+<h2 id="53-What-is-job-of-preprocessor-compiler-assembler-and-linker"><a href="#53-What-is-job-of-preprocessor-compiler-assembler-and-linker" class="headerlink" title="53) What is job of preprocessor, compiler, assembler and linker ?"></a>53) What is job of preprocessor, compiler, assembler and linker ?</h2><blockquote>
+<p>The preprocessor commands are processed and expanded by the preprocessor before actual compilation. After preprocessing, the compiler takes the output of the preprocessor and the source code, and generates assembly code. Once compiler completes its work, the assembler takes the assembly code and produces an assembly listing with offsets and generate object files.  </p>
+<p>The linker combines object files or libraries and produces a single executable file. It also resolves references to external symbols, assigns final addresses to functions and variables, and revises code and data to reflect new addresses.  </p>
+</blockquote>
+<h2 id="54-What-is-the-difference-between-static-linking-and-dynamic-linking"><a href="#54-What-is-the-difference-between-static-linking-and-dynamic-linking" class="headerlink" title="54) What is the difference between static linking and dynamic linking ?"></a>54) What is the difference between static linking and dynamic linking ?</h2><blockquote>
+<p>In static linking, all the library modules used in the program are placed in the final executable file making it larger in size. This is done by the linker. If the modules used in the program are modified after linking, then re-compilation is needed. The advantage of static linking is that the modules are present in an executable file. We don’t want to worry about compatibility issues.  </p>
+<p>In case of dynamic linking, only the names of the module used are present in the executable file and the actual linking is done at run time when the program and the library modules both are present in the memory. That is why, the executables are smaller in size. Modification of the library modules used does not force re-compilation. But dynamic linking may face compatibility issues with the library modules used.  </p>
+</blockquote>
+<h2 id="55-What-is-the-purpose-of-the-preprocessor-directive-error"><a href="#55-What-is-the-purpose-of-the-preprocessor-directive-error" class="headerlink" title="55) What is the purpose of the preprocessor directive #error?"></a>55) What is the purpose of the preprocessor directive #error?</h2><blockquote>
+<p>Preprocessor error is used to throw a error message during compile time. We can check the sanity of the make file and using debug options given below  </p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> DEBUG</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> RELEASE</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">error</span> Include DEBUG or RELEASE in the makefile</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="56-On-a-certain-project-it-is-required-to-set-an-integer-variable-at-the-absolute-address-0x67a9-to-the-value-0xaa55-The-compiler-is-a-pure-ANSI-compiler-Write-code-to-accomplish-this-task"><a href="#56-On-a-certain-project-it-is-required-to-set-an-integer-variable-at-the-absolute-address-0x67a9-to-the-value-0xaa55-The-compiler-is-a-pure-ANSI-compiler-Write-code-to-accomplish-this-task" class="headerlink" title="56) On a certain project it is required to set an integer variable at the absolute address 0x67a9 to the value 0xaa55. The compiler is a pure ANSI compiler. Write code to accomplish this task."></a>56) On a certain project it is required to set an integer variable at the absolute address 0x67a9 to the value 0xaa55. The compiler is a pure ANSI compiler. Write code to accomplish this task.</h2><blockquote>
+<p>This can be achieved by the following code fragment:  </p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *ptr;</span><br><span class="line">ptr = (<span class="keyword">int</span> *)<span class="number">0x67a9</span>;</span><br><span class="line">*ptr = <span class="number">0xaa55</span>;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="57-Significance-of-watchdog-timer-in-Embedded-Systems"><a href="#57-Significance-of-watchdog-timer-in-Embedded-Systems" class="headerlink" title="57) Significance of watchdog timer in Embedded Systems."></a>57) Significance of watchdog timer in Embedded Systems.</h2><blockquote>
+<p>The watchdog timer is a timing device with a predefined time interval. During that interval, some event may occur or else the device generates a time out signal. It is used to reset to the original state whenever some inappropriate events take place which can result in system malfunction. It is usually operated by counter devices.  </p>
+</blockquote>
+<h2 id="58-Why-n-executes-faster-than-n-1"><a href="#58-Why-n-executes-faster-than-n-1" class="headerlink" title="58) Why ++n executes faster than n+1?"></a>58) Why ++n executes faster than n+1?</h2><blockquote>
+<p>The expression ++n requires a single machine instruction such as INR to carry out the increment operation. In case of n+1, apart from INR, other instructions are required to load the value of n. That is why ++n is faster.  </p>
+</blockquote>
+<h2 id="59-What-is-wild-pointer"><a href="#59-What-is-wild-pointer" class="headerlink" title="59) What is wild pointer?"></a>59) What is wild pointer?</h2><blockquote>
+<p>A pointer that is not initialized to any valid address or NULL is considered as wild pointer. Consider the following code fragment -  </p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p;</span><br><span class="line">*p = <span class="number">20</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Here p is not initialized to any valid address and still we are trying to access the address. The p will get any garbage location and the next statement will corrupt that memory location.  </p>
+</blockquote>
+<h2 id="60-What-is-dangling-pointer"><a href="#60-What-is-dangling-pointer" class="headerlink" title="60) What is dangling pointer?"></a>60) What is dangling pointer?</h2><blockquote>
+<p>If a pointer is de-allocated or freed and the pointer is not assigned to NULL, then it may still contain that address and accessing the pointer means that we are trying to access that location and it will give an error. This type of pointer is called dangling pointer.  </p>
+</blockquote>
+<h2 id="61-Write-down-the-equivalent-pointer-expression-for-referring-the-same-element-a-i-j-k-l"><a href="#61-Write-down-the-equivalent-pointer-expression-for-referring-the-same-element-a-i-j-k-l" class="headerlink" title="61) Write down the equivalent pointer expression for referring the same element a[i][j][k][l] ?"></a>61) Write down the equivalent pointer expression for referring the same element a[i][j][k][l] ?</h2><blockquote>
+<p>We know that a[i] can be written as *(a+i). Same way, the array elements can be written like pointer expression as follows -  </p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a[i][j] == *(*(a+i)+j)</span><br><span class="line">a[i][j][k] == *(*(*(a+i)+j)+k)</span><br><span class="line">a[i][j][k][l] == *(*(*(*(a+i)+j)+k)+l)</span><br></pre></td></tr></table></figure>
+
+<h2 id="62-Which-bit-wise-operator-is-suitable-for-checking-whether-a-particular-bit-is-on-or-off"><a href="#62-Which-bit-wise-operator-is-suitable-for-checking-whether-a-particular-bit-is-on-or-off" class="headerlink" title="62) Which bit wise operator is suitable for checking whether a particular bit is on or off?"></a>62) Which bit wise operator is suitable for checking whether a particular bit is on or off?</h2><blockquote>
+<p>“Bitwise And” (&amp;) is used to check if any particular bit is set or not. To check whether 5’th bit is set we can write like this<br>bit = (byte &gt;&gt; 4) &amp; 0x01;<br>Here, shifting byte by 4 position means taking 5’th bit to first position and “Bitwise And” will get the value in 0 or 1.  </p>
+</blockquote>
+<h2 id="63-When-should-we-use-register-modifier"><a href="#63-When-should-we-use-register-modifier" class="headerlink" title="63) When should we use register modifier?"></a>63) When should we use register modifier?</h2><blockquote>
+<p>The register modifier is used when a variable is expected to be heavily used and keeping it in the CPU’s registers will make the access faster.  </p>
+</blockquote>
+<h2 id="64-Why-doesn’t-the-following-statement-work"><a href="#64-Why-doesn’t-the-following-statement-work" class="headerlink" title="64) Why doesn’t the following statement work?"></a>64) Why doesn’t the following statement work?</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> str[ ] = <span class="string">&quot;Hello&quot;</span> ;</span><br><span class="line"><span class="built_in">strcat</span> ( str, <span class="string">&#x27;!&#x27;</span> ) ;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>The string function strcat( ) concatenates two strings. But here the second argument is ‘!’, a character and that is the reason why the code doesn’t work. To make it work, the code should be changed like this:  </p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">strcat</span> ( str, <span class="string">&quot;!&quot;</span> ) ;</span><br></pre></td></tr></table></figure>
+
+<h2 id="65-Predict-the-output-or-error-s-for-the-following-program"><a href="#65-Predict-the-output-or-error-s-for-the-following-program" class="headerlink" title="65) Predict the output or error(s) for the following program:"></a>65) Predict the output or error(s) for the following program:</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">int</span> <span class="keyword">const</span> * p = <span class="number">5</span>;</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,++(*p));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>The above program will result in compilation error stating “Cannot modify a constant value”. Here p is a pointer to a constant integer. But in the next statement, we are trying to modify the value of that constant integer. It is not permissible in C and that is why it will give a compilation error.  </p>
+</blockquote>
+<h2 id="66-Guess-the-output"><a href="#66-Guess-the-output" class="headerlink" title="66) Guess the output:"></a>66) Guess the output:</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line">main()</span><br><span class="line">&#123;</span><br><span class="line"> <span class="keyword">unsigned</span> <span class="keyword">int</span> a = <span class="number">2</span>;</span><br><span class="line"> <span class="keyword">int</span> b = <span class="number">-10</span>;</span><br><span class="line"> (a + b &gt; <span class="number">0</span>)?<span class="built_in">puts</span>(<span class="string">&quot;greater than 0&quot;</span>):<span class="built_in">puts</span>(<span class="string">&quot;less than 1&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Output - greater than 0  </p>
+<p>If you have guessed the answer wrong, then here is the explanation for you. The a + b is -8, if we do the math. But here the addition is between different integral types - one is unsigned int and another is int. So, all the operands in this addition are promoted to unsigned integer type and b turns to a positive number and eventually a big one. The outcome of the result is obviously greater than 0 and hence, this is the output.  </p>
+</blockquote>
+<h2 id="67-Write-a-code-fragment-to-set-and-clear-only-bit-3-of-an-integer"><a href="#67-Write-a-code-fragment-to-set-and-clear-only-bit-3-of-an-integer" class="headerlink" title="67) Write a code fragment to set and clear only bit 3 of an integer."></a>67) Write a code fragment to set and clear only bit 3 of an integer.</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BIT(n) (0x1 &lt;&lt; n)</span></span><br><span class="line"><span class="keyword">int</span> a;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SetBit3</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   a |= BIT(<span class="number">3</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ClearBit3</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   a &amp;= ~BIT(<span class="number">3</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="68-What-is-wrong-with-this-code"><a href="#68-What-is-wrong-with-this-code" class="headerlink" title="68) What is wrong with this code?"></a>68) What is wrong with this code?</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">square</span><span class="params">(<span class="keyword">volatile</span> <span class="keyword">int</span> *p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">return</span> *p * *p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>The intention of the above code is to return the square of the integer pointed by the pointer p. Since it is volatile, the value of the integer may have changed suddenly and will result in something else which will looks like the result of the multiplication of two different integers. To work as expected, the code needs to be modified like this.   </p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">square</span><span class="params">(<span class="keyword">volatile</span> <span class="keyword">int</span> *p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">int</span> a = *p;</span><br><span class="line">   <span class="keyword">return</span> a*a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="69-Is-the-code-fragment-given-below-is-correct-If-so-what-is-the-output"><a href="#69-Is-the-code-fragment-given-below-is-correct-If-so-what-is-the-output" class="headerlink" title="69) Is the code fragment given below is correct? If so what is the output?"></a>69) Is the code fragment given below is correct? If so what is the output?</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">2</span>, j = <span class="number">3</span>, res;</span><br><span class="line">res = i+++j;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>The above code is correct, but little bit confusing. It is better not to follow this type of coding style. The compiler will interpret above statement as “res = i++ + j”. So the res will get value 5 and i after this will be 3.  </p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Learning-Embedded/" rel="tag"># Learning - Embedded</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/04/14/Lifeglance-md/" rel="prev" title="It's spring time">
+      <i class="fa fa-chevron-left"></i> It's spring time
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/05/01/coffee-may/" rel="next" title="The Coffee of May">
+      The Coffee of May <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-What-is-the-use-of-volatile-keyword"><span class="nav-number">1.</span> <span class="nav-text">1) What is the use of volatile keyword?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Can-a-variable-be-both-const-and-volatile"><span class="nav-number">2.</span> <span class="nav-text">2) Can a variable be both const and volatile?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Can-a-pointer-be-volatile"><span class="nav-number">3.</span> <span class="nav-text">3) Can a pointer be volatile?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-What-is-size-of-character-integer-integer-pointer-character-pointer"><span class="nav-number">4.</span> <span class="nav-text">4) What is size of character, integer, integer pointer, character pointer?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-What-is-NULL-pointer-and-what-is-its-use"><span class="nav-number">5.</span> <span class="nav-text">5) What is NULL pointer and what is its use?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-What-is-void-pointer-and-what-is-its-use"><span class="nav-number">6.</span> <span class="nav-text">6) What is void pointer and what is its use?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-What-is-ISR"><span class="nav-number">7.</span> <span class="nav-text">7) What is ISR?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-What-is-return-type-of-ISR"><span class="nav-number">8.</span> <span class="nav-text">8) What is return type of ISR?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-What-is-interrupt-latency"><span class="nav-number">9.</span> <span class="nav-text">9) What is interrupt latency?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-How-to-reduce-interrupt-latency"><span class="nav-number">10.</span> <span class="nav-text">10) How to reduce interrupt latency?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-Can-we-use-any-function-inside-ISR"><span class="nav-number">11.</span> <span class="nav-text">11) Can we use any function inside ISR?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-Can-we-use-printf-inside-ISR"><span class="nav-number">12.</span> <span class="nav-text">12) Can we use printf inside ISR?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-Can-we-put-breakpoint-inside-ISR"><span class="nav-number">13.</span> <span class="nav-text">13) Can we put breakpoint inside ISR?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-Can-static-variables-be-declared-in-a-header-file"><span class="nav-number">14.</span> <span class="nav-text">14) Can static variables be declared in a header file?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-Is-Count-Down-to-Zero-Loop-better-than-Count-Up-Loops"><span class="nav-number">15.</span> <span class="nav-text">15) Is Count Down_to_Zero Loop better than Count_Up_Loops?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-What-are-inline-functions"><span class="nav-number">16.</span> <span class="nav-text">16) What are inline functions?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-Can-include-files-be-nested"><span class="nav-number">17.</span> <span class="nav-text">17) Can include files be nested?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18-What-are-the-uses-of-the-keyword-static"><span class="nav-number">18.</span> <span class="nav-text">18) What are the uses of the keyword static?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19-What-is-Top-half-amp-bottom-half-of-a-kernel"><span class="nav-number">19.</span> <span class="nav-text">19) What is Top half &amp; bottom half of a kernel?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20-Difference-between-RISC-and-CISC-processor"><span class="nav-number">20.</span> <span class="nav-text">20) Difference between RISC and CISC processor.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21-What-is-RTOS"><span class="nav-number">21.</span> <span class="nav-text">21) What is RTOS?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-What-is-the-difference-between-hard-real-time-and-soft-real-time-OS"><span class="nav-number">22.</span> <span class="nav-text">22) What is the difference between hard real-time and soft real-time OS?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#23-What-type-of-scheduling-is-there-in-RTOS"><span class="nav-number">23.</span> <span class="nav-text">23) What type of scheduling is there in RTOS?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#24-What-is-priority-inversion"><span class="nav-number">24.</span> <span class="nav-text">24) What is priority inversion?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#25-What-is-priority-inheritance"><span class="nav-number">25.</span> <span class="nav-text">25) What is priority inheritance?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#26-How-many-types-of-IPC-mechanism-you-know"><span class="nav-number">26.</span> <span class="nav-text">26) How many types of IPC mechanism you know?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#27-What-is-semaphore"><span class="nav-number">27.</span> <span class="nav-text">27) What is semaphore?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#28-What-is-spin-lock"><span class="nav-number">28.</span> <span class="nav-text">28) What is spin lock?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#29-What-is-difference-between-binary-semaphore-and-mutex"><span class="nav-number">29.</span> <span class="nav-text">29) What is difference between binary semaphore and mutex?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#30-What-is-virtual-memory"><span class="nav-number">30.</span> <span class="nav-text">30) What is virtual memory?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#31-What-is-kernel-paging"><span class="nav-number">31.</span> <span class="nav-text">31) What is kernel paging?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#32-Can-structures-be-passed-to-the-functions-by-value"><span class="nav-number">32.</span> <span class="nav-text">32) Can structures be passed to the functions by value?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#33-Why-cannot-arrays-be-passed-by-values-to-functions"><span class="nav-number">33.</span> <span class="nav-text">33) Why cannot arrays be passed by values to functions?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#34-Advantages-and-disadvantages-of-using-macro-and-inline-functions"><span class="nav-number">34.</span> <span class="nav-text">34) Advantages and disadvantages of using macro and inline functions?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#35-What-happens-when-recursive-functions-are-declared-inline"><span class="nav-number">35.</span> <span class="nav-text">35) What happens when recursive functions are declared inline?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#36-define-cat-x-y-x-y-concatenates-x-to-y-But-cat-cat-1-2-3-does-not-expand-but-gives-preprocessor-warning-Why"><span class="nav-number">36.</span> <span class="nav-text">36) #define cat(x,y) x##y concatenates x to y. But cat(cat(1,2),3) does not expand but gives preprocessor warning. Why?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#37-ip-increments-what"><span class="nav-number">37.</span> <span class="nav-text">37) ++*ip increments what?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#38-Declare-a-manifest-constant-that-returns-the-number-of-seconds-in-a-year-using-preprocessor-Disregard-leap-years-in-your-answer"><span class="nav-number">38.</span> <span class="nav-text">38) Declare a manifest constant that returns the number of seconds in a year using preprocessor? Disregard leap years in your answer.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#39-Using-the-variable-a-write-down-definitions-for-the-following"><span class="nav-number">39.</span> <span class="nav-text">39) Using the variable a, write down definitions for the following:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#40-Consider-the-two-statements-below-and-point-out-which-one-is-preferred-and-why"><span class="nav-number">40.</span> <span class="nav-text">40) Consider the two statements below and point out which one is preferred and why?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#41-What-will-be-the-output-of-the-following-code-fragment"><span class="nav-number">41.</span> <span class="nav-text">41) What will be the output of the following code fragment?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#42-What-is-purpose-of-keyword-const"><span class="nav-number">42.</span> <span class="nav-text">42) What is purpose of keyword const?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#43-What-do-the-following-declarations-mean"><span class="nav-number">43.</span> <span class="nav-text">43) What do the following declarations mean?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#44-How-to-decide-whether-given-processor-is-using-little-endian-format-or-big-endian-format"><span class="nav-number">44.</span> <span class="nav-text">44) How to decide whether given processor is using little endian format or big endian format ?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#45-What-is-the-concatenation-operator"><span class="nav-number">45.</span> <span class="nav-text">45) What is the concatenation operator?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#46-Infinite-loops-often-arise-in-embedded-systems-How-does-you-code-an-infinite-loop-in-C"><span class="nav-number">46.</span> <span class="nav-text">46) Infinite loops often arise in embedded systems. How does you code an infinite loop in C?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#47-Guess-the-output"><span class="nav-number">47.</span> <span class="nav-text">47) Guess the output:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#48-What-is-forward-reference-w-r-t-pointers-in-c"><span class="nav-number">48.</span> <span class="nav-text">48) What is forward reference w.r.t. pointers in c?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#49-How-is-generic-list-manipulation-function-written-which-accepts-elements-of-any-kind"><span class="nav-number">49.</span> <span class="nav-text">49) How is generic list manipulation function written which accepts elements of any kind?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#50-How-can-you-define-a-structure-with-bit-field-members"><span class="nav-number">50.</span> <span class="nav-text">50) How can you define a structure with bit field members?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#51-How-do-you-write-a-function-which-takes-2-arguments-a-byte-and-a-field-in-the-byte-and-returns-the-value-of-the-field-in-that-byte"><span class="nav-number">51.</span> <span class="nav-text">51) How do you write a function which takes 2 arguments - a byte and a field in the byte and returns the value of the field in that byte?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#52-Which-parameters-decide-the-size-of-data-type-for-a-processor"><span class="nav-number">52.</span> <span class="nav-text">52) Which parameters decide the size of data type for a processor ?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#53-What-is-job-of-preprocessor-compiler-assembler-and-linker"><span class="nav-number">53.</span> <span class="nav-text">53) What is job of preprocessor, compiler, assembler and linker ?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#54-What-is-the-difference-between-static-linking-and-dynamic-linking"><span class="nav-number">54.</span> <span class="nav-text">54) What is the difference between static linking and dynamic linking ?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#55-What-is-the-purpose-of-the-preprocessor-directive-error"><span class="nav-number">55.</span> <span class="nav-text">55) What is the purpose of the preprocessor directive #error?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#56-On-a-certain-project-it-is-required-to-set-an-integer-variable-at-the-absolute-address-0x67a9-to-the-value-0xaa55-The-compiler-is-a-pure-ANSI-compiler-Write-code-to-accomplish-this-task"><span class="nav-number">56.</span> <span class="nav-text">56) On a certain project it is required to set an integer variable at the absolute address 0x67a9 to the value 0xaa55. The compiler is a pure ANSI compiler. Write code to accomplish this task.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#57-Significance-of-watchdog-timer-in-Embedded-Systems"><span class="nav-number">57.</span> <span class="nav-text">57) Significance of watchdog timer in Embedded Systems.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#58-Why-n-executes-faster-than-n-1"><span class="nav-number">58.</span> <span class="nav-text">58) Why ++n executes faster than n+1?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#59-What-is-wild-pointer"><span class="nav-number">59.</span> <span class="nav-text">59) What is wild pointer?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#60-What-is-dangling-pointer"><span class="nav-number">60.</span> <span class="nav-text">60) What is dangling pointer?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#61-Write-down-the-equivalent-pointer-expression-for-referring-the-same-element-a-i-j-k-l"><span class="nav-number">61.</span> <span class="nav-text">61) Write down the equivalent pointer expression for referring the same element a[i][j][k][l] ?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#62-Which-bit-wise-operator-is-suitable-for-checking-whether-a-particular-bit-is-on-or-off"><span class="nav-number">62.</span> <span class="nav-text">62) Which bit wise operator is suitable for checking whether a particular bit is on or off?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#63-When-should-we-use-register-modifier"><span class="nav-number">63.</span> <span class="nav-text">63) When should we use register modifier?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#64-Why-doesn%E2%80%99t-the-following-statement-work"><span class="nav-number">64.</span> <span class="nav-text">64) Why doesn’t the following statement work?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#65-Predict-the-output-or-error-s-for-the-following-program"><span class="nav-number">65.</span> <span class="nav-text">65) Predict the output or error(s) for the following program:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#66-Guess-the-output"><span class="nav-number">66.</span> <span class="nav-text">66) Guess the output:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#67-Write-a-code-fragment-to-set-and-clear-only-bit-3-of-an-integer"><span class="nav-number">67.</span> <span class="nav-text">67) Write a code fragment to set and clear only bit 3 of an integer.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#68-What-is-wrong-with-this-code"><span class="nav-number">68.</span> <span class="nav-text">68) What is wrong with this code?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#69-Is-the-code-fragment-given-below-is-correct-If-so-what-is-the-output"><span class="nav-number">69.</span> <span class="nav-text">69) Is the code fragment given below is correct? If so what is the output?</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yangkai Lyu</p>
+  <div class="site-description" itemprop="description">Sharing, Learning, Living</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yangkai Lyu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
